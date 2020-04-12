@@ -6,15 +6,19 @@ import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { CommonsModule } from './common/common.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent
     
   ],
   imports: [
     BrowserModule,
+    CommonsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,

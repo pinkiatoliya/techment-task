@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import {Customer} from '../customer-class';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Customer, customerHeader} from '../customer-class';
 import { CommonService } from 'src/app/common/common.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss']
 })
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent implements OnInit, OnDestroy {
   isEditCustomer: boolean = false;
   selectedCustomer: any = {};
-  constructor(private commonService: CommonService) { }
-  customerHeader: any = [
-    {"name": "Customer Name", "code": "name"},
-    {"name": "Mobile Number", "code": "mobile"},
-    {"name": "Email ID", "code": "email"}
-  ];
+  customerHeader: any = customerHeader;
   customersList: Customer[]= [];
   selectedIndex: number;
 
+  constructor(private commonService: CommonService) { }
   ngOnInit() {
     // Subscribe customers
     this.commonService.currentCustomerArr.subscribe(data => {
@@ -45,19 +42,30 @@ export class CustomerListComponent implements OnInit {
 
   saveFrmData(frmData: Customer){
     console.log(frmData);
-    this.customersList[this.selectedIndex] = frmData;
-    if(!!this.isEditCustomer){
-      // Update customer
-      this.commonService.setCustomerArray(this.customersList);
-    }else{
-      this.customersList.push(frmData);
+    if(!!frmData.email && !!frmData.mobile && !!frmData.name){
+      this.customersList[this.selectedIndex] = frmData;
+      if(!!this.isEditCustomer){
+        // Update customer
+        this.commonService.setCustomerArray(this.customersList);
+      }else{
+        this.customersList.push(frmData);
+        this.commonService.setCustomerArray(this.customersList);
+      }
+      this.resetForm();
     }
-    this.resetForm();
+
   }
 
   resetForm(){
     this.selectedCustomer = {};
     this.isEditCustomer = false;
+  }
+
+  ngOnDestroy(){
+    Observable.create((observer) =>  {
+      observer.next(true)
+      observer.complete();
+     });
   }
 
 }

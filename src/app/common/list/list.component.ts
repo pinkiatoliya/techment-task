@@ -12,11 +12,11 @@ export class EventObject {
 export class ListComponent implements OnInit {
   @Input() bodyItems: any;
   @Input() headerItems: any;
+  @Input()  callingFrom: any;
   @Output() actionEmitter = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
-    
   }
 
   actionOnItem(indx, action){

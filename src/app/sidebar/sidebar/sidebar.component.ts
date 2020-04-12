@@ -12,7 +12,6 @@ export class SidebarComponent implements OnInit {
   menuList: any = [];
   ngOnInit() {
     this.menuList = this.sideBarService.getNavigationMenu();
-    console.log(this.menuList);
   }
 
 }

@@ -1,23 +1,22 @@
 <table class="table table-dark">
   <thead>
-    <tr >
+    <tr>
       <th *ngFor="let header of headerItems; let i = index;">{{header.name}}</th>
-      <th>Action</th>
+      <th *ngIf="headerItems[0] && headerItems[0]['code'] !== 'orderId' && callingFrom !== 'dashboard'">Action</th>
     </tr>
   </thead>
-  <tbody >
+  <tbody>
     <tr *ngFor="let item of bodyItems; let indx = index;">
       <ng-container *ngFor="let header of headerItems; let i = index;">
-      <td>{{item[header.code]}}</td>
+        <td>{{item[header.code]}}</td>
       </ng-container>
-      <td>
-        <span (click)="actionOnItem(indx, 'edit')" class="pointer"><i class="fa fa-edit fa-lg"></i>
-        </span> &nbsp;
-        <span (click)="actionOnItem(indx, 'delete')" class="pointer">
-          <i class="fa fa-trash fa-lg"></i>
-        </span>
-      </td>
+        <td *ngIf="headerItems[0] && headerItems[0]['code'] !== 'orderId' && callingFrom !== 'dashboard'">
+          <span (click)="actionOnItem(indx, 'edit')" class="pointer"><i class="fa fa-edit fa-lg"></i>
+          </span> &nbsp;
+          <span (click)="actionOnItem(indx, 'delete')" class="pointer">
+            <i class="fa fa-trash fa-lg"></i>
+          </span>
+        </td>
     </tr>
-
   </tbody>
 </table>
