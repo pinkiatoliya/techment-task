@@ -1,11 +1,61 @@
-<div class="col-3 p-0 vh-100 h-100 text-white w-sidebar navbar-collapse collapse d-none d-md-flex sidebar">
+    <nav id="sidebar" [ngClass]="{'active': navToggle}">
+        <div class="sidebar-header">
+            <h3>Skan.io</h3>
+            <strong>SI</strong>
+        </div>
 
-<div class="navbar-dark bg-dark position-fixed h-100 w-sidebar">
-    <h6 class="px-3 pt-3">Main Menu</h6>
-    <ul class="nav flex-column flex-nowrap text-truncate">
-        <li class="nav-item" *ngFor="let menuItem of menuList; let i= index;">
-            <a class="nav-link" routerLink="{{menuItem.path}}" routerLinkActive="active" *ngIf="menuItem.isVisible">{{menuItem.menuName}}</a>
-        </li>
-    </ul>
-</div>
-</div>
+        <ul class="list-unstyled components">
+            <li class="active" *ngFor="let menu of menuList; let pIndx = index;">
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" (click)="getClickedMenu(menu.menuName)" routerLink="{{menu.path}}" *ngIf="menu.isVisible">
+                    <!-- <i class="fa fa-home"></i> -->
+                    {{menu.menuName}}
+                </a>
+                <ul class="collapse list-unstyled" [ngClass]="{'show': subIndexCount== pIndx+1}" *ngIf = "menu.submenu && menu.submenu.length > 0">
+                    <li *ngFor="let submenu of menu.submenu" >
+                        <a routerLink="{{submenu.path}}" routerLinkActive="active">{{submenu.menuName}}</a>
+                    </li>
+                </ul>
+            </li>      
+        </ul>
+       
+    </nav>
+
+    <!-- <li>
+        <a href="#">
+            <i class="fa fa-briefcase"></i>
+            About
+        </a>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fa fa-copy"></i>
+            Pages
+        </a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li>
+                <a href="#">Page 1</a>
+            </li>
+            <li>
+                <a href="#">Page 2</a>
+            </li>
+            <li>
+                <a href="#">Page 3</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-image"></i>
+            Portfolio
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-question"></i>
+            FAQ
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-paper-plane"></i>
+            Contact
+        </a>
+    </li> -->

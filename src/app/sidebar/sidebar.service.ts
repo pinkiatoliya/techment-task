@@ -10,7 +10,7 @@ var menuList:any =
             {
                   "id": 11,
                   "menuName": "Acount Setting",
-                  'path': '/account-setting',
+                  'path': '',
             }
           ]
       },
@@ -23,7 +23,7 @@ var menuList:any =
             {
                   "id": 12,
                   "menuName": "Customer List",
-                  'path': '/customer-list',
+                  'path': '/customers',
             },
             {
                   "id": 13,
