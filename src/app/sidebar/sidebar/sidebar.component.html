@@ -6,12 +6,6 @@
         <li class="nav-item" *ngFor="let menuItem of menuList; let i= index;">
             <a class="nav-link" routerLink="{{menuItem.path}}" routerLinkActive="active" *ngIf="menuItem.isVisible">{{menuItem.menuName}}</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/customers">Customers</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"routerLink="/orders">Orders</a>
-        </li>                     -->
     </ul>
 </div>
 </div>
